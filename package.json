@@ -2,16 +2,19 @@
   "name": "my-horror-movie-list",
   "version": "1.0.0",
   "description": "horror movie list website",
-  "main": "index.js",
+  "main": "index.html",
   "repository": "https://github.com/joe-lloyd/my-horror-movie-list.git",
   "author": "Joseph Lloyd <joe.lloyd.22.24@gmail.com>",
   "scripts": {
-    "start": "parcel serve ./src/index.html",
-    "build": "parcel build ./src/index.html"
+    "dev": "npx parcel index.html",
+    "start": "npx parcel serve index.html",
+    "build": "parcel build index.html"
   },
   "license": "MIT",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
+    "axios": "^0.21.1",
+    "parcel-bundler": "^1.12.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
@@ -24,6 +27,6 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "parcel": "next"
+    "typescript": "^4.2.3"
   }
 }
