@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBarw from './AppBar';
 import MovieList from './MovieList';
+import ErrorBoundary from './ErrorBoundary';
 
 const theme = createMuiTheme({
   palette: {
@@ -43,7 +44,7 @@ const Home = () => {
     const getMovies = async () => {
       try {
         setPageState(PAGE_STATE.LOADING);
-        const moviesReq = await axios.get(process.env.MOVIE_API);
+        const moviesReq = await axios.get(`${process.env.API_URL}/movies`);
         setMovies(moviesReq);
         setPageState(PAGE_STATE.LOADED);
       } catch (error) {
@@ -52,8 +53,10 @@ const Home = () => {
     };
     getMovies();
   }, []);
+  const api = process.env.API_URL;
 
   return (
+    <ErrorBoundary>
     <MuiThemeProvider theme={theme}>
       <div className={classes.root}>
         <CssBaseline />
@@ -75,11 +78,12 @@ const Home = () => {
             <h1>Loading</h1>
           </>
           )}
-          {pageState === PAGE_STATE.LOADED && <MovieList movies={movies} />}
+          {pageState === PAGE_STATE.LOADED && <MovieList movies={movies} api={api} />}
           {pageState === PAGE_STATE.ERROR && <h1>PAGE_STATE.ERROR</h1>}
         </Container>
       </div>
     </MuiThemeProvider>
+    </ErrorBoundary>
   );
 };
 

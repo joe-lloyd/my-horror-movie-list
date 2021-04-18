@@ -10,7 +10,7 @@ import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
-    maxWidth: 345,
+    width: '100%',
     height: '100%',
 
   },
@@ -43,18 +43,17 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-const api = 'http://localhost:1337';
-
 interface MediaCardProps {
   image: { url: string }[];
   title: string;
   rating: string;
   release: string;
   description: string;
+  api: string;
 }
 
 const MediaCard: React.FC<MediaCardProps> = ({
-  image, title, rating, release, description,
+  api, image, title, rating, release, description,
 }) => {
   const classes = useStyles();
   const [primaryImage] = image;
