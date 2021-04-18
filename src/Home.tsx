@@ -43,7 +43,7 @@ const Home = () => {
     const getMovies = async () => {
       try {
         setPageState(PAGE_STATE.LOADING);
-        const moviesReq = await axios.get('http://localhost:1337/movies');
+        const moviesReq = await axios.get(process.env.MOVIE_API);
         setMovies(moviesReq);
         setPageState(PAGE_STATE.LOADED);
       } catch (error) {

@@ -9,3 +9,5 @@ dist
 .parcel-cache
 
 .cache
+
+.env
