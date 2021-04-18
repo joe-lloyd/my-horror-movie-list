@@ -1,11 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Avatar, CardHeader } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
@@ -13,10 +11,22 @@ import { red } from '@material-ui/core/colors';
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     maxWidth: 345,
+    height: '100%',
+
+  },
+  button: {
+    height: '100%',
+    display: 'inline-flex',
+    flexDirection: 'column',
+    justifyContent: 'end',
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+    width: '100%',
+  },
+  cardHeader: {
+    width: '100%',
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -36,8 +46,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 const api = 'http://localhost:1337';
 
 interface MediaCardProps {
-  image: string[];
+  image: { url: string }[];
   title: string;
+  rating: string;
+  release: string;
+  description: string;
 }
 
 const MediaCard: React.FC<MediaCardProps> = ({
@@ -48,7 +61,7 @@ const MediaCard: React.FC<MediaCardProps> = ({
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea className={classes.button}>
         <CardHeader
           avatar={(
             <Avatar aria-label="recipe" className={classes.avatar}>
@@ -57,6 +70,7 @@ const MediaCard: React.FC<MediaCardProps> = ({
           )}
           title={title}
           subheader={release}
+          className={classes.cardHeader}
         />
         <CardMedia
           className={classes.media}

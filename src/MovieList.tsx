@@ -10,9 +10,17 @@ interface MovieListProps {
 
 const MovieList: React.FC<MovieListProps> = ({ movies }) => (
   <Grid container spacing={2}>
-    {movies.data.map((movieData) => (
-      <Grid item xs={12} sm={12} md={6} lg={3}>
-        <MediaCard {...movieData} />
+    {movies.data.map(({
+      image, title, rating, release, description,
+    }) => (
+      <Grid item xs={12} sm={6} md={4} lg={3}>
+        <MediaCard
+          image={image}
+          title={title}
+          rating={rating}
+          release={release}
+          description={description}
+        />
       </Grid>
     ))}
   </Grid>
